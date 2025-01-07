@@ -1,5 +1,7 @@
 package com.winter.app.langs.ex1;
 
+import com.winter.app.langs.ex2.WeatherDTO;
+
 public class PersonInfo {
 	
 	private String data;
@@ -32,5 +34,7 @@ public class PersonInfo {
 		
 		return persons;
 	}
+	
+	
 
 }
