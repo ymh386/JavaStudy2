@@ -1,6 +1,7 @@
 package com.winter.app.langs.ex2;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class WeatherInfo {
 	
@@ -15,6 +16,25 @@ public class WeatherInfo {
 	}
 	
 	public WeatherDTO [] init() {
+		String str = this.info.toString();
+		StringTokenizer st = new StringTokenizer(str.replace("*", ","), ",");
+		WeatherDTO [] dtos = new WeatherDTO [st.countTokens()/4];
+		int idx = 0;
+			while(st.hasMoreTokens()) {
+				WeatherDTO dto = new WeatherDTO();
+				dtos[idx] = dto;
+				dto.setCity(st.nextToken().trim());
+				dto.setGion(Integer.parseInt(st.nextToken().trim()));
+				dto.setHumidity(Double.parseDouble(st.nextToken().trim()));
+				dto.setStatus(st.nextToken().trim());
+				idx++;
+			
+		}
+		return dtos;
+		
+	}
+	
+	public WeatherDTO [] init_old() {
 		//info의 정보를 파싱해서
 		//WeatherDTO에 담아서
 		//WeatherDTO들을 리턴
