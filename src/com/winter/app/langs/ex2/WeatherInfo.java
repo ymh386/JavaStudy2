@@ -17,7 +17,8 @@ public class WeatherInfo {
 	
 	public WeatherDTO [] init() {
 		String str = this.info.toString();
-		StringTokenizer st = new StringTokenizer(str.replace("*", ","), ",");
+		str = str.replace("*", ",");
+		StringTokenizer st = new StringTokenizer(str, ",");
 		WeatherDTO [] dtos = new WeatherDTO [st.countTokens()/4];
 		int idx = 0;
 			while(st.hasMoreTokens()) {
