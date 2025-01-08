@@ -18,7 +18,9 @@ public class TokenMain {
 		
 		while(st.hasMoreTokens()) {
 			String t = st.nextToken("-");
-			System.out.println();
+			System.out.println(t);
+			t = st.nextToken("-");
+			System.out.println(t);
 			
 			
 		}
