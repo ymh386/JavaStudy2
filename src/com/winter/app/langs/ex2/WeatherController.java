@@ -1,5 +1,6 @@
 package com.winter.app.langs.ex2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WeatherController {
@@ -16,7 +17,8 @@ public class WeatherController {
 	
 	public void start() {
 		boolean check = true;
-		WeatherDTO [] dtos = null;
+//		WeatherDTO [] dtos = null;
+		ArrayList<WeatherDTO> ar = null;
 		while(check) {
 			System.out.println("1. 날씨정보초기화");
 			System.out.println("2. 날씨정보출력");
@@ -26,21 +28,21 @@ public class WeatherController {
 			System.out.println("6. 날씨정보종료");
 			int select = this.sc.nextInt();
 			if(select == 1) {
-				dtos = this.weatherInfo.init();
+				ar = this.weatherInfo.init();
 			}else if(select == 2) {
-				this.weatherView.view(dtos);
+				this.weatherView.view(ar);
 			}else if(select == 3) {
-				WeatherDTO dto = weatherInfo.find(dtos, sc);
+				WeatherDTO dto = weatherInfo.find(ar, sc);
 				if(dto != null) {
 					weatherView.findView(dto);	
 				}else {
 					System.out.println("해당 도시를 찾지못했습니다.");
 				}
 			}else if(select == 4) {
-				dtos = weatherInfo.make(dtos, sc);
+				weatherInfo.make(ar, sc);
 				
 			}else if(select == 5) {
-				dtos = weatherInfo.delete(dtos, sc);
+				weatherInfo.delete(ar, sc);
 				
 			}else {
 				System.out.println("프로그램 종료");
