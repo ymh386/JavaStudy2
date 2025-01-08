@@ -1,5 +1,9 @@
 package com.winter.app.langs.ex1;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
 import com.winter.app.langs.ex2.WeatherDTO;
 
 public class PersonInfo {
@@ -14,7 +18,21 @@ public class PersonInfo {
 	
 	//메서드명 init
 	//data의 변수의 값을 파싱
-	public Person [] init() {
+	public ArrayList<Person> init() {
+		StringTokenizer st = new StringTokenizer(this.data, ",");
+		ArrayList<Person> ar = new ArrayList<>();
+		while(st.hasMoreTokens()) {
+			Person person = new Person();
+			person.setName(st.nextToken());
+			person.setPhone(st.nextToken());
+			person.setEmail(st.nextToken());
+			person.setBirth(st.nextToken());
+			ar.add(person);
+			}
+		return ar;
+	}
+	
+	public Person [] init_old() {
 		String [] datas = this.data.split(",");
 		
 		//Person객체에 데이터를 대입
@@ -34,6 +52,47 @@ public class PersonInfo {
 		
 		return persons;
 	}
+	
+	public Person find(ArrayList<Person> ar, Scanner sc) {
+		System.out.println("검색할 주소록 이름");
+		String name = sc.next();
+		Person person = new Person();
+		for(int i=0;i<ar.size();i++) {
+			if(ar.get(i).getName().equals(name)) {
+				person = ar.get(i);
+				return person;
+			}
+		}
+		return null;
+	}
+	
+	public void make(ArrayList<Person> ar, Scanner sc) {
+		Person person = new Person();
+		System.out.println("이름 입력");
+		person.setName(sc.next());
+		System.out.println("전화번호 입력");
+		person.setPhone(sc.next());
+		System.out.println("이메일 입력");
+		person.setEmail(sc.next());
+		System.out.println("생년월일 입력");
+		person.setBirth(sc.next());
+		ar.add(person);
+	}
+	
+	public void delete(ArrayList<Person> ar, Scanner sc) {
+		System.out.println("삭제할 이름 검색");
+		String name = sc.next();
+		for(int i=0;i<ar.size();i++) {
+			if(ar.get(i).getName().equals(name)) {
+				ar.remove(i);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
 	
 	
 
