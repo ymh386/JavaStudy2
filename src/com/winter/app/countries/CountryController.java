@@ -1,11 +1,18 @@
 package com.winter.app.countries;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CountryController {
 	
-	private CountryDAO cd = new CountryDAO();
-	private CountryView countryView = new CountryView();
+	private CountryService countryService;
+	private CountryView countryView;
+	
+	public CountryController() {
+		// TODO Auto-generated constructor stub
+		countryService = new CountryService();
+		countryView = new CountryView();
+	}
 	
 	public void start(Scanner sc) throws Exception {
 		
@@ -15,9 +22,10 @@ public class CountryController {
 			System.out.println("1. 나라 리스트 출력 2. 나라 상세정보 출력 3. 종료");
 			int select = sc.nextInt();
 			if(select == 1) {
-				cd.getList();
+				List<CountryDTO> ar = countryService.getList();
+				countryView.view(ar);
 			} else if(select == 2) {
-				CountryDTO countryDTO = cd.getDetail();
+				CountryDTO countryDTO = countryService.getDetail(sc);
 				if(countryDTO != null) {
 					countryView.view(countryDTO);
 				}else {
