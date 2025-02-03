@@ -12,7 +12,7 @@ public class AccountDAO {
 	
 	
 	
-	public int join(AccountDTO dto) throws Exception {
+	public int add(AccountDTO dto) throws Exception {
 		Connection con = DBConnection.getConnection();
 		String sql = "INSERT INTO ACCOUNTS VALUES (?, ?, ?, ?, SYSDATE)";
 		
